@@ -28,6 +28,8 @@ const createProducts = async (req, res) => {
      }
 }
 
+// a
+
 module.exports ={
     getAllProducts,
     createProducts
