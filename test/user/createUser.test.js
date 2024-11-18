@@ -91,15 +91,6 @@ describe("createUser", () => {
       status: jest.fn().mockReturnThis(),
       json: jest.fn()
     };
-    //const mockHashedPassword = "hashedPassword"; // Mock da senha criptografada
-    /*
-    const mockCreateUser = {
-      id: 1,
-      name: "Carlos",
-      email: "carlos@email.com",
-      cpf: "12345678901"
-    };
-   */
 
     bcrypt.hash.mockResolvedValue(req.body.password); // Mock do bcrypt.hash
     User.create.mockResolvedValue(req.body); // Mock do User.create

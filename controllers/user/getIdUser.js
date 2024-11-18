@@ -1,5 +1,5 @@
 const validator = require("validator");
-const { User } = require("../../models");
+const { User,Address } = require("../../models");
 var jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const { Op } = require("sequelize");
@@ -7,13 +7,19 @@ const sendEmail = require("./sendEmail");
 const { generateRegistrationToken } = require("../../middleware/generateToken");
 
 const getIdUser = async (req, res) => {
-  const { id } = req.body;
+  const { id } = req.params;
 
   try {
     const findId = await User.findOne({
       where: {
         id
-      }
+      },
+      include: [
+        {
+          model: Address, // O modelo que será incluído
+          as: "Addresses", // Usa o alias definido na associação User.hasMany
+        },
+      ],
     });
 
     if (!findId) {

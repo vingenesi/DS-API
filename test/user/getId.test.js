@@ -9,7 +9,7 @@ describe("getIdUser", () => {
 
   beforeEach(() => {
     req = {
-      body: {
+      params: {
         id: 1
       }
     };

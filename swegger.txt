@@ -1,0 +1,90 @@
+# Instruções para testar a criação de usuário no Insomnia
+
+## 1. Configuração do método HTTP:
+- **Método HTTP:** POST
+- **URL:** http://localhost:3000/users
+
+## 2. Cabeçalhos (Headers):
+- **Key:** Content-Type
+- **Value:** application/json
+
+## 3. Corpo da Requisição (Body):
+Escolha o tipo `JSON` no Insomnia e adicione os seguintes dados de exemplo no corpo da requisição:
+
+```json
+{
+  "name": "João da Silva",
+  "email": "joao.silva@example.com",
+  "cpf": "12345678901",
+  "fone": "11987654321",
+  "password": "senha123"
+}
+
+# Instruções para testar a exclusão (desativação) de usuário no Insomnia
+
+## 1. Configuração do método HTTP:
+- **Método HTTP:** DELETE
+- **URL:** http://localhost:3000/users/{id}
+  - Substitua `{id}` pelo ID do usuário que você deseja desativar.
+
+## 2. Cabeçalhos (Headers):
+- **Key:** Content-Type
+- **Value:** application/json
+  (Se você precisar de autenticação, adicione o cabeçalho de autenticação conforme necessário).
+
+## 3. Exemplos de Respostas:
+
+- **Resposta de Sucesso (Status 200):**
+  ```json
+  {
+    "message": "Usuário excluído com sucesso."
+  }
+
+# Instruções para testar a busca de todos os usuários no Insomnia
+
+## 1. Configuração do método HTTP:
+- **Método HTTP:** GET
+- **URL:** http://localhost:3000/users
+  - Este endpoint retornará todos os usuários cadastrados.
+
+## 2. Cabeçalhos (Headers):
+- **Key:** Content-Type
+- **Value:** application/json
+  (Se necessário, adicione um cabeçalho de autenticação).
+
+## 3. Exemplos de Respostas:
+
+- **Resposta de Sucesso (Status 200):**
+  ```json
+  [
+    {
+      "name": "João da Silva",
+      "email": "joao.silva@example.com",
+      "cpf": "12345678901",
+      "fone": "11987654321",
+      "active": true
+    },
+    {
+      "name": "Maria Oliveira",
+      "email": "maria.oliveira@example.com",
+      "cpf": "98765432100",
+      "fone": "11976543210",
+      "active": false
+    }
+  ]
+
+# Instruções para testar o login de usuário no Insomnia
+
+## 1. Configuração do método HTTP:
+- **Método HTTP:** POST
+- **URL:** http://localhost:3000/users/login
+  - Este endpoint realiza o login do usuário com base no e-mail e senha fornecidos.
+
+## 2. Corpo da Requisição (Body):
+Escolha o tipo `JSON` no Insomnia e adicione os seguintes dados de exemplo no corpo da requisição:
+
+```json
+{
+  "email": "joao.silva@example.com",
+  "password": "senha123"
+}
