@@ -1,7 +1,7 @@
 const {
   createUserWithAddress
 } = require("../../controllers/userWithAddress/createUserWithAddress");
-const { createUserData } = require("../../controllers//user/createUserData");
+const { createUserData } = require("../../controllers/user/createUserData");
 const {
   createAddressData
 } = require("../../controllers/adress/createAddressData");

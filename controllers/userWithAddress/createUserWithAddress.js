@@ -36,6 +36,10 @@ const createUserWithAddress = async (req, res) => {
       password
     });
 
+    if (!newUser || !newUser.id) {
+      return res.status(400).json({ error: "Falha ao criar usuário." });
+    }
+
     const newAddress = await createAddressData({
       user_id: newUser.id,
       rua,
@@ -44,7 +48,11 @@ const createUserWithAddress = async (req, res) => {
       cep,
       complemento
     });
-    
+
+    if (!newAddress || !newAddress.id) {
+      return res.status(400).json({ error: "Falha ao criar endereço." });
+    }
+
     return res.status(201).json({
       user: newUser,
       address: newAddress
