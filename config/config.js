@@ -20,6 +20,12 @@ module.exports = {
     database: process.env.DB_NAME_DEPLOY,
     host: process.env.DB_HOST_DEPLOY,
     dialect: process.env.DB_DIALECT_DEPLOY,
-    port: process.env.DB_PORT_DEPLOY || 5432
+    port: process.env.DB_PORT_DEPLOY || 5432,
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false // Aceita certificados autoassinados
+      }
+    }
   }
 };
