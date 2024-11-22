@@ -9,9 +9,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      id: {
-        type: Sequelize.INTEGER
-      },
       discountPercentual: {
         type: Sequelize.FLOAT
       },
@@ -29,9 +26,6 @@ module.exports = {
       },
       isDiscount: {
         type: Sequelize.BOOLEAN
-      },
-      url: {
-        type: Sequelize.TEXT
       },
       createdAt: {
         allowNull: false,
