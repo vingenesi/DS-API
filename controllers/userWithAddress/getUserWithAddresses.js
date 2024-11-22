@@ -1,19 +1,26 @@
 const validator = require("validator");
-const { User } = require("../../models");
+const { User, Address } = require("../../models");
 var jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const { Op } = require("sequelize");
-const sendEmail = require("./sendEmail");
+const sendEmail = require("../user/sendEmail");
 const { generateRegistrationToken } = require("../../middleware/generateToken");
 
 const getUserWithAddresses = async (req, res) => {
+  const { id } = req.params;
   try {
-    if (req.user.id !== parseInt(req.params.id, 10)) {
-      return res.status(403).json({ error: "Acesso não autorizado!" });
-    }
 
-    const user = await User.findByPk(req.params.id, {
-      include: [{ model: Address, as: "addresses" }]
+
+    const user = await User.findOne({
+      where: {
+        id
+      },
+      include: [
+        {
+          model: Address, // O modelo que será incluído
+          as: "Addresses" // Usa o alias definido na associação User.hasMany
+        }
+      ]
     });
     if (!user) {
       return res.status(404).json({ error: "Usuário não encontrado." });

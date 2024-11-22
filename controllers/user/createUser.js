@@ -52,7 +52,7 @@ const createUser = async (req, res) => {
       res
     );
     */
-    res.status(201).json({
+    return res.status(201).json({
       newUser,
       registrationToken
     });
