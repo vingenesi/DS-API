@@ -28,7 +28,7 @@ const createProducts = async (req, res) => {
      }
 }
 
-// au
+// aue
 
 module.exports ={
     getAllProducts,
