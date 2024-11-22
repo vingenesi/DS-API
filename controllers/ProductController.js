@@ -1,9 +1,9 @@
-const {products} = require('../models/products')
+const { Products } = require('../models')
 
 
-const getAllProduct = async (_req, res) => {
+const getAllProducts = async (_req, res) => {
     try{
-        const products = await products.findAll();
+        const products = await Products.findAll();
         res.json(products);
     } catch(error) {
         console.log(error);
@@ -12,15 +12,15 @@ const getAllProduct = async (_req, res) => {
 }
 
 const createProducts = async (req, res) => {
-    const {nome, categoria, precoAntigo, precoNovo, desconto, imagem  } = req.body
+    const {discountPercentual, category, productName, discountPrice, price, isDiscount } = req.body;
 
-    if (!nome || !categoria || !precoAntigo || !precoNovo || !imagem) {
+    if (!discountPercentual || !category || !productName || !discountPrice || !price || !isDiscount) {
         return res.status(400).json({ error: "Campos obrigatórios" });
     }
 
      try {
-        const newProduct = await products.create({ discountPercentual, category, productName, discountPrice, isDiscount, url });
-        res.status(201).json(newProduct);
+        const newProduct = await Products.create({ discountPercentual, category, productName, discountPrice, price, isDiscount });
+        return res.status(201).json(newProduct);
      } catch (error) {
         console.log(error);
         
@@ -28,7 +28,9 @@ const createProducts = async (req, res) => {
      }
 }
 
+// a
+
 module.exports ={
-    getAllProduct,
+    getAllProducts,
     createProducts
 }

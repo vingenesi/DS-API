@@ -14,25 +14,26 @@ const userWithAddress = require("./routes/userWithAddress");
 const finalizaCompra = require("./routes/finalizaCompra");
 
 
+const productRouter = require("./routes/product")
 
 const app = express();
 
 app.use(
   cors({
-    origin: "*",
+    origin: "http://localhost:5173",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true // permite o envio de cookies se necessário
   })
 );
 // view engine setup
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "jade");
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.use("/", indexRouter);
@@ -40,6 +41,7 @@ app.use("/users", usersRouter);
 app.use("/address", addressRouter);
 app.use("/userwithaddress", userWithAddress);
 app.use("/finalizaCompra", finalizaCompra);
+app.use('/products', productRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
